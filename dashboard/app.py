@@ -12,9 +12,16 @@ ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
 with ui.sidebar(title="Filter controls"):
     # Date selector
-    ui.date_select(
-        "date"
+    ui.input_date_range(
+        "date",
+        "Date range",
+        start="2021-01-01",
+        end="2022-12-01",
+        min="2021-01-01",
+        max="2022-12-01",
+        width=10
     )
+    
     # Cities selector
     ui.input_checkbox_group(
         "city",
@@ -31,25 +38,25 @@ with ui.sidebar(title="Filter controls"):
         selected=["Groceries", "Open_Market", "Boutique"]
     )
 
-with ui.layout_columns():
+with ui.layout_columns(fill=False):
     with ui.card(full_screen=True):
         ui.card_header("Unit price")
 
-        @reactive.calc
+        @render.text
         def sum_unit_price():
             return round(df["Unit_Price"].sum(), 1)
 
     with ui.card(full_screen=True):
         ui.card_header("Sales Volume")
 
-        @reactive.calc
+        @render.text
         def sum_sales_volume():
-            return round(df["Sales_Volume(KG_LTRS)"].sum(), 1)
+            return f"{round(df['Sales_Volume(KG_LTRS)'].sum(), 1)} kg/L"
         
-    with ui.card(full_screen=True):
+    with ui.card():
         ui.card_header("Sales Value")
 
-        @reactive.calc
+        @render.text
         def sum_sales_value():
             return round(df["Sales_Value"].sum(), 1)
 

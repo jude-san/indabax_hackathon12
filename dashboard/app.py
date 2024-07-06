@@ -60,6 +60,26 @@ with ui.layout_columns(fill=False):
         def sum_sales_value():
             return round(df["Sales_Value"].sum(), 1)
 
+with ui.layout_columns():
+    @render.plot
+    def plot_sales():
+        # Remove rows with invalid dates
+        df_sales = df.loc[:, ["Period", "Sales_Value"]].dropna(subset=["Period"])
+        # Set Period as index
+        df_sales.set_index("Period", inplace=True)
+        # Aggregate sales data by month
+        monthly_sales = df_sales.resample('M').sum()
+
+        # Plot the time series data
+        fig = plt.figure(figsize=(12, 6))
+        plt.plot(monthly_sales.index,
+                monthly_sales['Sales_Value'], marker='o')
+        plt.title('Monthly Sales Value Over Time')
+        plt.xlabel('Date')
+        plt.ylabel('Sales Value')
+        plt.grid(True)
+        return fig
+                
 
 ui.include_css(app_dir / "styles.css")
 

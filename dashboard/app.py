@@ -39,22 +39,22 @@ with ui.sidebar(title="Filter controls"):
     )
 
 with ui.layout_columns(fill=False):
-    with ui.card(full_screen=True):
-        ui.card_header("Unit price")
+    with ui.value_box(showcase=icon_svg("coins")):
+        "Unit price"
 
         @render.text
         def sum_unit_price():
             return round(df["Unit_Price"].sum(), 1)
 
-    with ui.card(full_screen=True):
-        ui.card_header("Sales Volume")
+    with ui.value_box(showcase=icon_svg("scale-balanced")):
+        "Sales Volume"
 
         @render.text
         def sum_sales_volume():
             return f"{round(df['Sales_Volume(KG_LTRS)'].sum(), 1)} kg/L"
         
-    with ui.card():
-        ui.card_header("Sales Value")
+    with ui.value_box(showcase=icon_svg("vault")):
+        "Sales Value"
 
         @render.text
         def sum_sales_value():

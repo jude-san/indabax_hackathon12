@@ -11,11 +11,20 @@ from shiny.express import input, render, ui
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
 with ui.sidebar(title="Filter controls"):
+    # Cities selector
     ui.input_checkbox_group(
         "city",
         "Cities",
         ["Abidjan", "Bouake"],
         selected=["Abidjan", "Bouake"],
+    )
+    
+    # Channel selector
+    ui.input_checkbox_group(
+        "channel",
+        "Channel",
+        ["Groceries", "Open_Market", "Boutique"],
+        selected=["Groceries", "Open_Market", "Boutique"]
     )
 
 

@@ -11,6 +11,10 @@ from shiny.express import input, render, ui
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
 with ui.sidebar(title="Filter controls"):
+    # Date selector
+    ui.date_select(
+        "date"
+    )
     # Cities selector
     ui.input_checkbox_group(
         "city",
@@ -26,6 +30,28 @@ with ui.sidebar(title="Filter controls"):
         ["Groceries", "Open_Market", "Boutique"],
         selected=["Groceries", "Open_Market", "Boutique"]
     )
+
+with ui.layout_columns():
+    with ui.card(full_screen=True):
+        ui.card_header("Unit price")
+
+        @reactive.calc
+        def sum_unit_price():
+            return round(df["Unit_Price"].sum(), 1)
+
+    with ui.card(full_screen=True):
+        ui.card_header("Sales Volume")
+
+        @reactive.calc
+        def sum_sales_volume():
+            return round(df["Sales_Volume(KG_LTRS)"].sum(), 1)
+        
+    with ui.card(full_screen=True):
+        ui.card_header("Sales Value")
+
+        @reactive.calc
+        def sum_sales_value():
+            return round(df["Sales_Value"].sum(), 1)
 
 
 # with ui.layout_column_wrap(fill=False):
@@ -51,32 +77,7 @@ with ui.sidebar(title="Filter controls"):
 #             return f"{filtered_df()['bill_depth_mm'].mean():.1f} mm"
 
 
-# with ui.layout_columns():
-#     with ui.card(full_screen=True):
-#         ui.card_header("Bill length and depth")
 
-#         @render.plot
-#         def length_depth():
-#             return sns.scatterplot(
-#                 data=filtered_df(),
-#                 x="bill_length_mm",
-#                 y="bill_depth_mm",
-#                 hue="species",
-#             )
-
-#     with ui.card(full_screen=True):
-#         ui.card_header("Penguin data")
-
-#         @render.data_frame
-#         def summary_statistics():
-#             cols = [
-#                 "species",
-#                 "island",
-#                 "bill_length_mm",
-#                 "bill_depth_mm",
-#                 "body_mass_g",
-#             ]
-#             return render.DataGrid(filtered_df()[cols], filters=True)
 
 
 ui.include_css(app_dir / "styles.css")

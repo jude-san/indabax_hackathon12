@@ -61,32 +61,6 @@ with ui.layout_columns(fill=False):
             return round(df["Sales_Value"].sum(), 1)
 
 
-# with ui.layout_column_wrap(fill=False):
-#     with ui.value_box(showcase=icon_svg("earlybirds")):
-#         "Number of penguins"
-
-#         @render.text
-#         def count():
-#             return filtered_df().shape[0]
-
-#     with ui.value_box(showcase=icon_svg("ruler-horizontal")):
-#         "Average bill length"
-
-#         @render.text
-#         def bill_length():
-#             return f"{filtered_df()['bill_length_mm'].mean():.1f} mm"
-
-#     with ui.value_box(showcase=icon_svg("ruler-vertical")):
-#         "Average bill depth"
-
-#         @render.text
-#         def bill_depth():
-#             return f"{filtered_df()['bill_depth_mm'].mean():.1f} mm"
-
-
-
-
-
 ui.include_css(app_dir / "styles.css")
 
 

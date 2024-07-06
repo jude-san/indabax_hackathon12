@@ -33,7 +33,7 @@ with ui.sidebar(title="Filter controls"):
     # Channel selector
     ui.input_checkbox_group(
         "channel",
-        "Channel",
+        "Channels",
         ["Groceries", "Open_Market", "Boutique"],
         selected=["Groceries", "Open_Market", "Boutique"]
     )

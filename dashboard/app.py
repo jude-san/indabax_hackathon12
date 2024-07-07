@@ -18,11 +18,12 @@ openai.api_key = API_KEY
 
 def get_response(query):
     response = openai.completions.create(
-        engine="gpt-3.5-turbi-instruct",
         prompt=query,
+        model="gpt-3.5-turbo-instruct",
         stream=True,
         max_tokens=150
     )
+    return  response.choices[0].text_strip()
 
 start = datetime.date(2021, 1, 1)
 end = datetime.date(2022, 12, 1)

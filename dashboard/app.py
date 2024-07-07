@@ -82,9 +82,7 @@ with ui.layout_columns():
         @render.plot
         def plot_sales():
             # Remove rows with invalid dates
-            df_sales = filtered_df().loc[:, ["Period", "Sales_Value"]].dropna(subset=["Period"])
-            # Set Period as index
-            df_sales.set_index("Period", inplace=True)
+            df_sales = filtered_df().loc[:, ["Sales_Value"]]
             # Aggregate sales data by month
             monthly_sales = df_sales.resample('ME').sum()
 
@@ -104,6 +102,10 @@ ui.include_css(app_dir / "styles.css")
 
 @reactive.calc
 def filtered_df():
-    filt_df = df[df["City"].isin(input.city())]
+    df["Period"] = pd.to_datetime(df["Period"], errors="coerce")
+    df.set_index("Period", inplace=True)
+    start_date, end_date = input.date()
+    filt_df = df[start_date:end_date]
+    filt_df = filt_df[df["City"].isin(input.city())]
     filt_df = filt_df[df["Channel"].isin(input.channel())]
     return filt_df

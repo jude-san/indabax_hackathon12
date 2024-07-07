@@ -7,8 +7,21 @@ from faicons import icon_svg
 from shared import app_dir, df
 from shiny import reactive
 from shiny.express import input, render, ui
+from functools import partial
+from shiny.ui import page_navbar
+from api import API_KEY
+import openai
 
-ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
+# Openai
+openai.api_key = API_KEY
+
+def get_response(query):
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=query,
+        max_tokens=150
+    )
+
 
 with ui.sidebar(title="Filter controls"):
     # Date selector
@@ -21,7 +34,7 @@ with ui.sidebar(title="Filter controls"):
         max="2022-12-01",
         width=10
     )
-    
+
     # Cities selector
     ui.input_checkbox_group(
         "city",
@@ -29,7 +42,7 @@ with ui.sidebar(title="Filter controls"):
         ["Abidjan", "Bouake"],
         selected=["Abidjan", "Bouake"],
     )
-    
+
     # Channel selector
     ui.input_checkbox_group(
         "channel",
@@ -37,6 +50,9 @@ with ui.sidebar(title="Filter controls"):
         ["Groceries", "Open_Market", "Boutique"],
         selected=["Groceries", "Open_Market", "Boutique"]
     )
+
+ui.page_opts(title="Juderic Retail Dashboard", fillable=True
+             )
 
 with ui.layout_columns(fill=False):
     with ui.value_box(showcase=icon_svg("coins")):

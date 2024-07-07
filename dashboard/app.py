@@ -70,7 +70,7 @@ with ui.layout_columns():
             # Set Period as index
             df_sales.set_index("Period", inplace=True)
             # Aggregate sales data by month
-            monthly_sales = df_sales.resample('M').sum()
+            monthly_sales = df_sales.resample('ME').sum()
 
             # Plot the time series data
             fig = plt.figure(figsize=(12, 6))

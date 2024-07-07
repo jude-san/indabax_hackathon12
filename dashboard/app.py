@@ -34,7 +34,8 @@ with ui.sidebar(title="Filter controls"):
         start=start,
         end=end,
         min=start,
-        max=end
+        max=end,
+        width="100"
     )
 
     # Cities selector
@@ -52,6 +53,12 @@ with ui.sidebar(title="Filter controls"):
         ["Groceries", "Open_Market", "Boutique"],
         selected=["Groceries", "Open_Market", "Boutique"]
     )
+    
+    # Query box
+    ui.input_text("query", "Enter your query")
+    
+    # Button
+    ui.input_action_button("submit", "Submit")
 
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True
              )
@@ -97,6 +104,17 @@ with ui.layout_columns():
             plt.ylabel('Sales Value')
             plt.grid(True)
             return fig
+    with ui.card():
+        "Chatbot response"
+        @render.text
+        def response():
+            user_query = input.query()
+            if user_query:
+                chatgpt_response = get_response(user_query)
+                return f"Response {chatgpt_response}"
+            else:
+                return "Please enter a query"
+        
                 
 
 ui.include_css(app_dir / "styles.css")

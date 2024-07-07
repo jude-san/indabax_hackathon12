@@ -12,16 +12,16 @@ from functools import partial
 from shiny.ui import page_navbar
 from api import API_KEY
 import openai
+from openai import OpenAI
+client = OpenAI(api_key=API_KEY)
 
-# Openai
-openai.api_key = API_KEY
 
 def get_response(query):
-    response = openai.completions.create(
-        prompt=query,
-        model="gpt-3.5-turbo-instruct",
+    response = client.chat.completions.create(
+        messages=query,
+        model="gpt-3.5-turbo-1106",
         stream=True,
-        max_tokens=150
+        max_tokens=10
     )
     return  response.choices[0].text_strip()
 

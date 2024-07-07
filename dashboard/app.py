@@ -20,6 +20,7 @@ def get_response(query):
     response = openai.completions.create(
         engine="gpt-3.5-turbi-instruct",
         prompt=query,
+        stream=True,
         max_tokens=150
     )
 

@@ -105,5 +105,5 @@ ui.include_css(app_dir / "styles.css")
 @reactive.calc
 def filtered_df():
     filt_df = df[df["City"].isin(input.city())]
-    filt_df = df[df["Channel"].isin(input.channel())]
+    filt_df = filt_df[df["Channel"].isin(input.channel())]
     return filt_df

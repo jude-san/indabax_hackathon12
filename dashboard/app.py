@@ -108,6 +108,6 @@ def filtered_df():
     df.set_index("Date", inplace=True)
     start, end = input.date()
     filt_df = df[start:end]
-    filt_df = filt_df[df["City"].isin(input.city())]
-    filt_df = filt_df[df["Channel"].isin(input.channel())]
+    filt_df = filt_df[filt_df["City"].isin(input.city())]
+    filt_df = filt_df[filt_df["Channel"].isin(input.channel())]
     return filt_df

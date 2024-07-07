@@ -109,6 +109,7 @@ with ui.layout_columns():
     with ui.card():
         "Chatbot response"
         @render.text
+        @reactive.event(input.submit)
         def response():
             user_query = input.query()
             if user_query:

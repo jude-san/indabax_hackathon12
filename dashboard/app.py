@@ -60,21 +60,21 @@ with ui.layout_columns(fill=False):
 
         @render.text
         def sum_unit_price():
-            return round(df["Unit_Price"].sum(), 1)
+            return filtered_df()["Unit_Price"].sum().round(1)
 
     with ui.value_box(showcase=icon_svg("scale-balanced")):
         "Sales Volume"
 
         @render.text
         def sum_sales_volume():
-            return f"{round(df['Sales_Volume(KG_LTRS)'].sum(), 1)} kg/L"
+            return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1)} kg/L"
         
     with ui.value_box(showcase=icon_svg("vault")):
         "Sales Value"
 
         @render.text
         def sum_sales_value():
-            return round(df["Sales_Value"].sum(), 1)
+            return filtered_df()["Sales_Value"].sum().round(1)
 
 with ui.layout_columns():
     with ui.card():
@@ -82,7 +82,7 @@ with ui.layout_columns():
         @render.plot
         def plot_sales():
             # Remove rows with invalid dates
-            df_sales = df.loc[:, ["Period", "Sales_Value"]].dropna(subset=["Period"])
+            df_sales = filtered_df().loc[:, ["Period", "Sales_Value"]].dropna(subset=["Period"])
             # Set Period as index
             df_sales.set_index("Period", inplace=True)
             # Aggregate sales data by month
@@ -102,8 +102,8 @@ with ui.layout_columns():
 ui.include_css(app_dir / "styles.css")
 
 
-# @reactive.calc
-# def filtered_df():
-#     filt_df = df[df["species"].isin(input.species())]
-#     filt_df = filt_df.loc[filt_df["body_mass_g"] < input.mass()]
-#     return filt_df
+@reactive.calc
+def filtered_df():
+    filt_df = df[df["City"].isin(input.city())]
+    filt_df = df[df["Channel"].isin(input.channel())]
+    return filt_df

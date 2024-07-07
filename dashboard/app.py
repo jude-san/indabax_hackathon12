@@ -17,8 +17,8 @@ import openai
 openai.api_key = API_KEY
 
 def get_response(query):
-    response = openai.Completion.create(
-        engine="text-davinci-003",
+    response = openai.completions.create(
+        engine="gpt-3.5-turbi-instruct",
         prompt=query,
         max_tokens=150
     )

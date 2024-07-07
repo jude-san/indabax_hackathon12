@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from faicons import icon_svg
+import datetime
 
 # Import data from shared.py
 from shared import app_dir, df
@@ -22,17 +23,18 @@ def get_response(query):
         max_tokens=150
     )
 
+start = datetime.date(2021, 1, 1)
+end = datetime.date(2022, 12, 1)
 
 with ui.sidebar(title="Filter controls"):
     # Date selector
     ui.input_date_range(
         "date",
         "Date range",
-        start="2021-01-01",
-        end="2022-12-01",
-        min="2021-01-01",
-        max="2022-12-01",
-        width=10
+        start=start,
+        end=end,
+        min=start,
+        max=end
     )
 
     # Cities selector
@@ -102,10 +104,10 @@ ui.include_css(app_dir / "styles.css")
 
 @reactive.calc
 def filtered_df():
-    df["Period"] = pd.to_datetime(df["Period"], errors="coerce")
-    df.set_index("Period", inplace=True)
-    start_date, end_date = input.date()
-    filt_df = df[start_date:end_date]
+    df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
+    df.set_index("Date", inplace=True)
+    start, end = input.date()
+    filt_df = df[start:end]
     filt_df = filt_df[df["City"].isin(input.city())]
     filt_df = filt_df[df["Channel"].isin(input.channel())]
     return filt_df

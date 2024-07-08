@@ -130,7 +130,7 @@ with ui.layout_columns():
             plt.grid(True)
             return fig
               
-
+# CSS stylesheet
 ui.include_css(app_dir / "styles.css")
 
 # Reactive data

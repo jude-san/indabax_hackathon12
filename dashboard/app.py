@@ -10,21 +10,7 @@ from shiny import reactive
 from shiny.express import input, render, ui
 from functools import partial
 from shiny.ui import page_navbar
-from api import API_KEY
-from openai import OpenAI
 
-# Initialise client object
-client = OpenAI(api_key=API_KEY)
-
-
-def get_response(query):
-    response = client.chat.completions.create(
-        messages=query,
-        model="gpt-3.5-turbo-1106",
-        stream=True,
-        max_tokens=10
-    )
-    return  response.choices[0].text_strip()
 
 start = datetime.date(2021, 1, 1)
 end = datetime.date(2022, 12, 1)

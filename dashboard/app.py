@@ -10,6 +10,7 @@ from shiny import reactive
 from shiny.express import input, render, ui
 from functools import partial
 from shiny.ui import page_navbar
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
 
 start = datetime.date(2021, 1, 1)
@@ -94,11 +95,38 @@ with ui.layout_columns():
             plt.ylabel('Sales Value')
             plt.grid(True)
             return fig
+        
     with ui.card():
         "Forecast sales"
-       
-        
-                
+        @render.plot
+        def forecast_sales():
+            # Remove rows with invalid dates
+            df_sales = filtered_df().loc[:, ["Sales_Value"]]
+            # Aggregate sales data by month
+            monthly_sales = df_sales.resample('ME').sum()
+            # Build and fit the model
+            model = ExponentialSmoothing(
+            monthly_sales['Sales_Value'], seasonal='add', seasonal_periods=12).fit()
+
+            # Forecast for the next 12 months
+            forecast = model.forecast(steps=12)
+            
+            # Plot the forecast
+            plt.figure(figsize=(12, 6))
+            fig = plt.plot(monthly_sales.index,
+                    monthly_sales['Sales_Value'], marker='o', label='Observed')
+            future_dates = [monthly_sales.index.max() + pd.DateOffset(months=i)
+                            for i in range(1, 13)]
+            forecast_df = pd.DataFrame({'Period': future_dates, 'Sales_Value': forecast})
+            plt.plot(forecast_df['Period'], forecast_df['Sales_Value'],
+                    marker='o', linestyle='--', label='Forecasted')
+            plt.title('Sales Value Forecast')
+            plt.xlabel('Date')
+            plt.ylabel('Sales Value')
+            plt.legend()
+            plt.grid(True)
+            return fig
+              
 
 ui.include_css(app_dir / "styles.css")
 

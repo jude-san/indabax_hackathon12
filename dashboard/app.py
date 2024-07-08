@@ -95,16 +95,8 @@ with ui.layout_columns():
             plt.grid(True)
             return fig
     with ui.card():
-        "Chatbot response"
-        @render.text
-        @reactive.event(input.submit)
-        def response():
-            user_query = input.query()
-            if user_query:
-                chatgpt_response = get_response(user_query)
-                return f"Response {chatgpt_response}"
-            else:
-                return "Please enter a query"
+        "Forecast sales"
+       
         
                 
 

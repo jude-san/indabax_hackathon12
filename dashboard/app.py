@@ -1,3 +1,4 @@
+# Import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -12,10 +13,14 @@ from functools import partial
 from shiny.ui import page_navbar
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
-
+# Start and end dates
 start = datetime.date(2021, 1, 1)
 end = datetime.date(2022, 12, 1)
 
+# Title page
+ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
+
+# Sidebar: Filter controls
 with ui.sidebar(title="Filter controls"):
     # Date selector
     ui.input_date_range(
@@ -50,10 +55,7 @@ with ui.sidebar(title="Filter controls"):
     # Button
     ui.input_action_button("submit", "Submit")
 
-ui.page_opts(title="Juderic Retail Dashboard", fillable=True
-             )
-
-    
+#  Value boxes
 with ui.layout_columns(fill=False):
     with ui.value_box(showcase=icon_svg("coins")):
         "Unit price"
@@ -76,6 +78,7 @@ with ui.layout_columns(fill=False):
         def sum_sales_value():
             return filtered_df()["Sales_Value"].sum().round(1)
 
+# Plot time series data
 with ui.layout_columns():
     with ui.card():
         "Monthly sales"
@@ -130,7 +133,7 @@ with ui.layout_columns():
 
 ui.include_css(app_dir / "styles.css")
 
-
+# Reactive data
 @reactive.calc
 def filtered_df():
     df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
@@ -145,16 +148,15 @@ def filtered_df():
 ui.HTML(
     """
       <script>
-window.embeddedChatbotConfig = {
-chatbotId: "AgzYXakqXm0hdtC4cNzAn",
-domain: "www.chatbase.co"
-}
-</script>
-<script
-src="https://www.chatbase.co/embed.min.js"
-chatbotId="AgzYXakqXm0hdtC4cNzAn"
-domain="www.chatbase.co"
-defer>
-</script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "AgzYXakqXm0hdtC4cNzAn",
+        domain: "www.chatbase.co"}
+      </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="AgzYXakqXm0hdtC4cNzAn"
+        domain="www.chatbase.co"
+        defer>
+        </script>
     """
 )

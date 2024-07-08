@@ -11,8 +11,9 @@ from shiny.express import input, render, ui
 from functools import partial
 from shiny.ui import page_navbar
 from api import API_KEY
-import openai
 from openai import OpenAI
+
+# Initialise client object
 client = OpenAI(api_key=API_KEY)
 
 
@@ -65,6 +66,7 @@ with ui.sidebar(title="Filter controls"):
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True
              )
 
+    
 with ui.layout_columns(fill=False):
     with ui.value_box(showcase=icon_svg("coins")):
         "Unit price"
@@ -132,3 +134,21 @@ def filtered_df():
     filt_df = filt_df[filt_df["City"].isin(input.city())]
     filt_df = filt_df[filt_df["Channel"].isin(input.channel())]
     return filt_df
+
+# Embed chatbot
+ui.HTML(
+    """
+      <script>
+window.embeddedChatbotConfig = {
+chatbotId: "AgzYXakqXm0hdtC4cNzAn",
+domain: "www.chatbase.co"
+}
+</script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="AgzYXakqXm0hdtC4cNzAn"
+domain="www.chatbase.co"
+defer>
+</script>
+    """
+)

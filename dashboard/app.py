@@ -49,11 +49,8 @@ with ui.sidebar(title="Filter controls"):
         selected=["Groceries", "Open_Market", "Boutique"]
     )
     
-    # Query box
-    ui.input_text("query", "Enter your query")
-    
     # Button
-    ui.input_action_button("submit", "Submit")
+    ui.input_action_button("filter", "Refresh")
 
 #  Value boxes
 with ui.layout_columns(fill=False):
@@ -135,6 +132,7 @@ ui.include_css(app_dir / "styles.css")
 
 # Reactive data
 @reactive.calc
+@reactive.event(input.filter)
 def filtered_df():
     df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
     df.set_index("Date", inplace=True)

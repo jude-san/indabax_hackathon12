@@ -20,7 +20,10 @@ end = datetime.date(2022, 12, 1)
 # Title page
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
-# Sidebar: Filter controls
+# # Push the navbar items to the right
+# ui.nav_spacer()
+
+# # Sidebar: Filter controls
 with ui.sidebar(title="Filter controls"):
     # Date selector
     ui.input_date_range(
@@ -50,7 +53,7 @@ with ui.sidebar(title="Filter controls"):
     )
     
     # Button
-    ui.input_action_button("filter", "Refresh")
+    ui.input_action_button("filter", "Filter")
 
 #  Value boxes
 with ui.layout_columns(fill=False):
@@ -76,7 +79,7 @@ with ui.layout_columns(fill=False):
             return filtered_df()["Sales_Value"].sum().round(1)
 
 # Plot time series data
-with ui.layout_columns():
+with ui.layout_column_wrap():
     with ui.card():
         "Monthly sales"
         @render.plot
@@ -132,7 +135,7 @@ ui.include_css(app_dir / "styles.css")
 
 # Reactive data
 @reactive.calc
-@reactive.event(input.filter)
+@reactive.event(input.filter, ignore_none=False)
 def filtered_df():
     df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
     df.set_index("Date", inplace=True)

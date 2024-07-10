@@ -21,7 +21,9 @@ end = datetime.date(2022, 12, 1)
 # Title page
 ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
+# Navigation tabs
 with ui.navset_tab(id="home"):
+    # Home tab
     with ui.nav_panel("Home"):
         #  Value boxes
         with ui.layout_columns(fill=False):
@@ -67,6 +69,7 @@ with ui.navset_tab(id="home"):
                     plt.grid(True)
                     return fig
                 
+    # Sales forecast tab           
     with ui.nav_panel("Sales forecast"):
         with ui.card():
             "Forecast sales"
@@ -99,7 +102,8 @@ with ui.navset_tab(id="home"):
                 plt.legend()
                 plt.grid(True)
                 return fig
-            
+    
+    # Descriptive tab       
     with ui.nav_panel("Descriptives"):
         #  Value boxes
         with ui.layout_columns(fill=False):
@@ -124,7 +128,33 @@ with ui.navset_tab(id="home"):
                 @render.text
                 def mean_sales_value():
                     return f"{filtered_df()["Sales_Value"].mean().round(1):,}"
-    
+                
+        with ui.layout_columns(fill=False):
+            with ui.card():
+                "Bar chart for categorical variables"
+                @render.plot
+                def plot_cat():
+                    
+                    # List of columns to exclude
+                    exclude_columns = ["Category", "Segment", "Item Name", "City", "Pack_Size"]
+
+                    # Filter the columns
+                    columns_to_plot = [col for col in df.select_dtypes("object") if col not in exclude_columns]
+
+                    fig, ax = plt.subplots(2, 2, figsize=(14, 6))
+
+                    # Flatten the axes array
+                    ax = ax.flatten()
+
+                    index = 0
+                    for i in columns_to_plot:
+                        filtered_df()[i].value_counts().sort_values().plot(kind="barh", ax=ax[index])
+                        index += 1
+                        # Adjust layout to prevent overlap
+                        plt.tight_layout()
+                    return fig
+
+    # Dataset tab                           
     with ui.nav_panel("Dataset"):
         with ui.card():
             "Dataset"

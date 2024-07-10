@@ -38,7 +38,7 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def sum_sales_volume():
-                    return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1)} kg/L"
+                    return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1):,} kg/L"
 
             with ui.value_box(showcase=icon_svg("vault")):
                 "Sales Value"

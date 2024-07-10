@@ -26,7 +26,7 @@ with ui.navset_tab(id="home"):
         #  Value boxes
         with ui.layout_columns(fill=False):
             with ui.value_box(showcase=icon_svg("coins")):
-                "Unit price"
+                "Sum of Unit price"
 
                 @render.text
                 def sum_unit_price():
@@ -34,14 +34,14 @@ with ui.navset_tab(id="home"):
                     return res
 
             with ui.value_box(showcase=icon_svg("scale-balanced")):
-                "Sales Volume"
+                "Sum of Sales Volume"
 
                 @render.text
                 def sum_sales_volume():
                     return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1):,} kg/L"
 
             with ui.value_box(showcase=icon_svg("vault")):
-                "Sales Value"
+                "Sum of Sales Value"
 
                 @render.text
                 def sum_sales_value():

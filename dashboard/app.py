@@ -45,7 +45,7 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def sum_sales_value():
-                    return filtered_df()["Sales_Value"].sum().round(1)
+                    return f"{filtered_df()["Sales_Value"].sum().round(1):,}"
                 
         with ui.layout_columns(fill=False):
              with ui.card():

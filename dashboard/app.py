@@ -236,7 +236,11 @@ def filtered_df():
     filt_df = df[start:end]
     df_city = filt_df["City"].isin(input.city())
     df_channel = filt_df["Channel"].isin(input.channel())
-    return filt_df[df_city & df_channel]
+    df_manufacture = filt_df["Manufacturer"].isin(input.manufacturer())
+    df_brand = filt_df["Brand"].isin(input.brand())
+    df_pack_size = filt_df["Pack_Size"].isin(input.pack_size())
+    df_packaging = filt_df["Packaging"].isin(input.packaging())
+    return filt_df[df_city & df_channel & df_manufacture & df_brand & df_pack_size & df_packaging]
 
 # Embed chatbot
 ui.HTML(

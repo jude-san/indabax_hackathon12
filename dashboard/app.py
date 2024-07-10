@@ -30,7 +30,8 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def sum_unit_price():
-                    return filtered_df()["Unit_Price"].sum().round(1)
+                    res = f"{filtered_df()["Unit_Price"].sum().round(1):,}"
+                    return res
 
             with ui.value_box(showcase=icon_svg("scale-balanced")):
                 "Sales Volume"

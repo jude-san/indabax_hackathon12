@@ -101,7 +101,12 @@ with ui.navset_tab(id="home"):
                 plt.legend()
                 plt.grid(True)
                 return fig
-                
+    with ui.nav_panel("Dataset"):
+        with ui.card():
+            "Dataset"
+            @render.data_frame
+            def dataframe():
+                return filtered_df()    
 
 # # Sidebar: Filter controls
 with ui.sidebar(title="Filter controls", open="desktop"):
@@ -135,11 +140,7 @@ with ui.sidebar(title="Filter controls", open="desktop"):
     # Button
     ui.input_action_button("filter", "Filter")
 
-
-#     # Plot time series data
-# with ui.layout_column_wrap():
-    
-              
+          
 # CSS stylesheet
 ui.include_css(app_dir / "styles.css")
 
@@ -153,7 +154,7 @@ def filtered_df():
     filt_df = df[start:end]
     df_city = filt_df["City"].isin(input.city())
     df_channel = filt_df["Channel"].isin(input.channel())
-    return filt_df[df_city | df_channel]
+    return filt_df[df_city & df_channel]
 
 # Embed chatbot
 ui.HTML(

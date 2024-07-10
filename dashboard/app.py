@@ -19,10 +19,7 @@ start = datetime.date(2021, 1, 1)
 end = datetime.date(2022, 12, 1)
 
 # Title page
-# ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
-
-# # Push the navbar items to the right
-shiny.ui.page_navbar(title="Juderic Retail Dashboard", id="navbar")
+ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
 
 with ui.navset_tab(id="home"):
     with ui.nav_panel("Home"):

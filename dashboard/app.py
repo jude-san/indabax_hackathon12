@@ -99,6 +99,32 @@ with ui.navset_tab(id="home"):
                 plt.legend()
                 plt.grid(True)
                 return fig
+            
+    with ui.nav_panel("Descriptives"):
+        #  Value boxes
+        with ui.layout_columns(fill=False):
+            with ui.value_box(showcase=icon_svg("coins")):
+                "Mean of Unit price"
+
+                @render.text
+                def mean_unit_price():
+                    res = f"{filtered_df()["Unit_Price"].mean().round(1):,}"
+                    return res
+
+            with ui.value_box(showcase=icon_svg("scale-balanced")):
+                "Mean of Sales Volume"
+
+                @render.text
+                def mean_sales_volume():
+                    return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].mean(), 1):,} kg/L"
+
+            with ui.value_box(showcase=icon_svg("vault")):
+                "Mean of Sales Value"
+
+                @render.text
+                def mean_sales_value():
+                    return f"{filtered_df()["Sales_Value"].mean().round(1):,}"
+    
     with ui.nav_panel("Dataset"):
         with ui.card():
             "Dataset"

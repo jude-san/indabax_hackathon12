@@ -78,7 +78,7 @@ with ui.navset_tab(id="home"):
                 monthly_sales = df_sales.resample('ME').sum()
                 # Build and fit the model
                 model = ExponentialSmoothing(
-                    monthly_sales['Sales_Value'], seasonal='add', seasonal_periods=4).fit()
+                    monthly_sales['Sales_Value'], seasonal='add', seasonal_periods=12).fit()
 
                 # Forecast for the next 12 months
                 forecast = model.forecast(steps=12)

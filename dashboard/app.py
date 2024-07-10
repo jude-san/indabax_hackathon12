@@ -147,6 +147,22 @@ with ui.sidebar(title="Filter controls", open="desktop"):
                   'REINE', 'MOULIN MODERNE', 'AVOS GROUP', 'OBA MAKARNA']
     )
     
+    # Pack size selector
+    ui.input_checkbox_group(
+        "pack_size",
+        "Pack size",
+        ['200G', '500G', '4540G', '475G', '250G', '450G'],
+        selected=['200G', '500G', '4540G', '475G', '250G', '450G']
+    )
+    
+    # Packaging selector
+    ui.input_checkbox_group(
+        "packaging",
+        "Packaging",
+        ['SACHET', 'BAG'],
+        selected=['SACHET', 'BAG']
+    )
+    
     # Button
     ui.input_action_button("filter", "Filter")
 

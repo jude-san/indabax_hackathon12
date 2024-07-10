@@ -29,7 +29,7 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def sum_unit_price():
-                    res = f"{filtered_df()["Unit_Price"].sum().round(1):,}"
+                    res = f"{filtered_df()['Unit_Price'].sum().round(1):,}"
                     return res
 
             with ui.value_box(showcase=icon_svg("scale-balanced")):
@@ -44,7 +44,7 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def sum_sales_value():
-                    return f"{filtered_df()["Sales_Value"].sum().round(1):,}"
+                    return f"{filtered_df()['Sales_Value'].sum().round(1):,}"
                 
         with ui.layout_columns(fill=False):
              with ui.card():

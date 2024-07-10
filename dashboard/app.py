@@ -1,16 +1,13 @@
 # Import libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 from faicons import icon_svg
 import datetime
 
 # Import data from shared.py
 from shared import app_dir, df
-import shiny
 from shiny import reactive
 from shiny.express import input, render, ui
-from functools import partial
 from shiny.ui import page_navbar
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
@@ -237,10 +234,9 @@ def filtered_df():
     df_city = filt_df["City"].isin(input.city())
     df_channel = filt_df["Channel"].isin(input.channel())
     df_manufacture = filt_df["Manufacturer"].isin(input.manufacturer())
-    df_brand = filt_df["Brand"].isin(input.brand())
     df_pack_size = filt_df["Pack_Size"].isin(input.pack_size())
     df_packaging = filt_df["Packaging"].isin(input.packaging())
-    return filt_df[df_city & df_channel & df_manufacture & df_brand & df_pack_size & df_packaging]
+    return filt_df[df_city & df_channel & df_manufacture & df_pack_size & df_packaging]
 
 # Embed chatbot
 ui.HTML(

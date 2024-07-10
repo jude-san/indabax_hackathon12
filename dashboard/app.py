@@ -135,6 +135,18 @@ with ui.sidebar(title="Filter controls", open="desktop"):
         selected=["Groceries", "Open_Market", "Boutique"]
     )
     
+    # Manufacturer selector
+    ui.input_checkbox_group(
+        "manufacturer",
+        "Manufacturer",
+        ['CAPRA', 'GOYMEN FOODS', 'DOUBA', 'PAGANINI', 'PANZANI',
+         'PASTA DOUBA', 'MR COOK', 'TAT MAKARNACILIK SANAYI VE TICARET AS',
+         'REINE', 'MOULIN MODERNE', 'AVOS GROUP', 'OBA MAKARNA'],
+        selected=['CAPRA', 'GOYMEN FOODS', 'DOUBA', 'PAGANINI', 'PANZANI',
+                  'PASTA DOUBA', 'MR COOK', 'TAT MAKARNACILIK SANAYI VE TICARET AS',
+                  'REINE', 'MOULIN MODERNE', 'AVOS GROUP', 'OBA MAKARNA']
+    )
+    
     # Button
     ui.input_action_button("filter", "Filter")
 

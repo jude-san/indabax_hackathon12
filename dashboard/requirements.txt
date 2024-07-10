@@ -1,4 +1,6 @@
 faicons
 shiny
-seaborn
+matplotlib
 pandas
+datetime
+statsmodels

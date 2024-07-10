@@ -216,8 +216,9 @@ with ui.sidebar(title="Filter controls", open="desktop"):
         selected=['SACHET', 'BAG']
     )
     
-    # Button
+    # Buttons
     ui.input_action_button("filter", "Filter")
+    ui.input_action_button("reset", "Reset")
 
           
 # CSS stylesheet

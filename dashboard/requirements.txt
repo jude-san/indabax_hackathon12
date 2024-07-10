@@ -4,3 +4,4 @@ matplotlib
 pandas
 datetime
 statsmodels
+openpyxl

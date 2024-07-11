@@ -16,7 +16,7 @@ start = datetime.date(2021, 1, 1)
 end = datetime.date(2022, 12, 1)
 
 # Title page
-ui.page_opts(title="Juderic Retail Dashboard", fillable=True)
+ui.h1("Juderic Retail Dashboard")
 
 # Navigation tabs
 with ui.navset_tab(id="home"):

@@ -23,28 +23,27 @@ with ui.navset_tab(id="home"):
     # Home tab
     with ui.nav_panel("Home"):
         #  Value boxes
-        with ui.layout_columns(fill=False):
-            with ui.value_box(showcase=icon_svg("coins")):
-                "Sum of Unit price"
+        # with ui.layout_columns(fill=False):
+        #     with ui.value_box(showcase=icon_svg("coins")):
+        #         "Sum of Unit price"
+        #         @render.text
+        #         def sum_unit_price():
+        #             res = f"{filtered_df()['Unit_Price'].sum().round(1):,}"
+        #             return res
 
-                @render.text
-                def sum_unit_price():
-                    res = f"{filtered_df()['Unit_Price'].sum().round(1):,}"
-                    return res
+        #     with ui.value_box(showcase=icon_svg("scale-balanced")):
+        #         "Sum of Sales Volume"
 
-            with ui.value_box(showcase=icon_svg("scale-balanced")):
-                "Sum of Sales Volume"
+        #         @render.text
+        #         def sum_sales_volume():
+        #             return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1):,} kg/L"
 
-                @render.text
-                def sum_sales_volume():
-                    return f"{round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1):,} kg/L"
+        #     with ui.value_box(showcase=icon_svg("vault")):
+        #         "Sum of Sales Value"
 
-            with ui.value_box(showcase=icon_svg("vault")):
-                "Sum of Sales Value"
-
-                @render.text
-                def sum_sales_value():
-                    return f"{filtered_df()['Sales_Value'].sum().round(1):,}"
+        #         @render.text
+        #         def sum_sales_value():
+        #             return f"{filtered_df()['Sales_Value'].sum().round(1):,}"
                 
         with ui.layout_columns(fill=False):
              with ui.card():

@@ -21,39 +21,39 @@ ui.h1("Juderic Retail Dashboard")
 with ui.navset_tab(id="home"):
     # Home tab
     with ui.nav_panel("Home"):
-        #  Value boxes
-        with ui.layout_columns(fill=False):
-            with ui.value_box(showcase=icon_svg("coins")):
-                "Sum of Unit price"
-                @render.text
-                def sum_unit_price():
-                    total_unit_price = filtered_df()['Unit_Price'].sum().round(1)
-                    # Formatting the total_unit_price with commas
-                    formatted_total = f"{total_unit_price:,}"
-                    return formatted_total
+        # #  Value boxes
+        # with ui.layout_columns(fill=False):
+        #     with ui.value_box(showcase=icon_svg("coins")):
+        #         "Sum of Unit price"
+        #         @render.text
+        #         def sum_unit_price():
+        #             total_unit_price = filtered_df()['Unit_Price'].sum().round(1)
+        #             # Formatting the total_unit_price with commas
+        #             formatted_total = f"{total_unit_price:,}"
+        #             return formatted_total
                 
-            with ui.value_box(showcase=icon_svg("scale-balanced")):
-                "Sum of Sales Volume"
+        #     with ui.value_box(showcase=icon_svg("scale-balanced")):
+        #         "Sum of Sales Volume"
 
-                @render.text
-                def sum_sales_volume():
-                    # Summing the 'Sales_Volume(KG_LTRS)' column and rounding to 1 decimal place
-                    total_sales_volume = round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1)
-                    # Formatting the total_sales_volume with commas and adding ' kg/L' suffix
-                    formatted_total_sales_volume = f"{total_sales_volume:,} kg/L"
-                    return formatted_total_sales_volume
+        #         @render.text
+        #         def sum_sales_volume():
+        #             # Summing the 'Sales_Volume(KG_LTRS)' column and rounding to 1 decimal place
+        #             total_sales_volume = round(filtered_df()['Sales_Volume(KG_LTRS)'].sum(), 1)
+        #             # Formatting the total_sales_volume with commas and adding ' kg/L' suffix
+        #             formatted_total_sales_volume = f"{total_sales_volume:,} kg/L"
+        #             return formatted_total_sales_volume
 
-            with ui.value_box(showcase=icon_svg("vault")):
-                "Sum of Sales Value"
+        #     with ui.value_box(showcase=icon_svg("vault")):
+        #         "Sum of Sales Value"
 
-                @render.text
-                def sum_sales_value():
-                    # Summing the 'Sales_Value' column and rounding to 1 decimal place
-                    total_sales_value = filtered_df()['Sales_Value'].sum().round(1)
+        #         @render.text
+        #         def sum_sales_value():
+        #             # Summing the 'Sales_Value' column and rounding to 1 decimal place
+        #             total_sales_value = filtered_df()['Sales_Value'].sum().round(1)
 
-                    # Formatting the total_sales_value with commas
-                    formatted_total_sales_value = f"{total_sales_value:,}"
-                    return formatted_total_sales_value
+        #             # Formatting the total_sales_value with commas
+        #             formatted_total_sales_value = f"{total_sales_value:,}"
+        #             return formatted_total_sales_value
                 
         with ui.layout_columns(fill=False):
              with ui.card():

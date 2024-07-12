@@ -8,7 +8,6 @@ import datetime
 from shared import app_dir, df
 from shiny import reactive
 from shiny.express import input, render, ui
-from shiny.ui import page_navbar
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
 # Start and end dates

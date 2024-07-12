@@ -133,7 +133,7 @@ with ui.navset_tab(id="home"):
 
                 @render.text
                 def mean_sales_value():
-                    return f"{filtered_df()["Sales_Value"].mean().round(1):,}"
+                    return f"{filtered_df()['Sales_Value'].mean().round(1):,}"
                 
         with ui.layout_columns(fill=False):
             with ui.card():

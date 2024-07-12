@@ -248,6 +248,20 @@ def filtered_df():
     df_packaging = filt_df["Packaging"].isin(input.packaging())
     return filt_df[df_city & df_channel & df_manufacture & df_pack_size & df_packaging]
 
+@reactive.effect
+@reactive.event(input.reset)
+def _():
+    ui.update_date_range("date", start=start, end=end)
+    ui.update_checkbox_group("city", selected=["Abidjan", "Bouake"])
+    ui.update_checkbox_group("channel", selected=[
+                             "Groceries", "Open_Market", "Boutique"])
+    ui.update_checkbox_group("manufacturer", selected=['CAPRA', 'GOYMEN FOODS', 'DOUBA', 'PAGANINI', 'PANZANI',
+                                                       'PASTA DOUBA', 'MR COOK', 'TAT MAKARNACILIK SANAYI VE TICARET AS',
+                                                       'REINE', 'MOULIN MODERNE', 'AVOS GROUP', 'OBA MAKARNA'])
+    ui.update_checkbox_group("pack_size", selected=[
+                             '200G', '500G', '4540G', '475G', '250G', '450G'])
+    ui.update_checkbox_group("packaging", selected=['SACHET', 'BAG'])
+
 # Embed chatbot
 ui.HTML(
     """

@@ -87,7 +87,7 @@ with ui.navset_tab(id="home"):
                 monthly_sales = df_sales.resample('ME').sum()
                 # Build and fit the model
                 model = ExponentialSmoothing(
-                    monthly_sales['Sales_Value'], seasonal='add', seasonal_periods=12).fit()
+                    monthly_sales['Sales_Value'], seasonal='add', seasonal_periods=4).fit()
 
                 # Forecast for the next 12 months
                 forecast = model.forecast(steps=12)
@@ -267,12 +267,12 @@ ui.HTML(
     """
       <script>
         window.embeddedChatbotConfig = {
-        chatbotId: "AgzYXakqXm0hdtC4cNzAn",
+        chatbotId: "yXjnDtqNy2BqjtmrVPsc6",
         domain: "www.chatbase.co"}
       </script>
         <script
         src="https://www.chatbase.co/embed.min.js"
-        chatbotId="AgzYXakqXm0hdtC4cNzAn"
+        chatbotId="yXjnDtqNy2BqjtmrVPsc6"
         domain="www.chatbase.co"
         defer>
         </script>

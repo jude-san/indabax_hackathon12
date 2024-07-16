@@ -147,7 +147,7 @@ with ui.navset_tab(id="home"):
                     # Filter the columns
                     columns_to_plot = [col for col in df.select_dtypes("object") if col not in exclude_columns]
 
-                    fig, ax = plt.subplots(2, 2, figsize=(14, 6))
+                    fig, ax = plt.subplots(2, 2, figsize=(9, 5))
 
                     # Flatten the axes array
                     ax = ax.flatten()

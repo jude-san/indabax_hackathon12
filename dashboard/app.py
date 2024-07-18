@@ -99,8 +99,8 @@ with ui.navset_tab(id="home"):
                 future_dates = [monthly_sales.index.max() + pd.DateOffset(months=i)
                                 for i in range(1, 13)]
                 forecast_df = pd.DataFrame(
-                    {'Period': future_dates, 'Sales_Value': forecast})
-                plt.plot(forecast_df['Period'], forecast_df['Sales_Value'],
+                    {'Date': future_dates, 'Sales_Value': forecast})
+                plt.plot(forecast_df['Date'], forecast_df['Sales_Value'],
                         marker='o', linestyle='--', label='Forecasted')
                 plt.title('Sales Value Forecast')
                 plt.xlabel('Date')
@@ -239,7 +239,6 @@ ui.include_css(app_dir / "styles.css")
 def filtered_df():
     df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
     df.set_index("Date", inplace=True)
-    df.drop(columns=["Period"], inplace=True)
     start, end = input.date()
     filt_df = df[start:end]
     df_city = filt_df["City"].isin(input.city())
@@ -247,7 +246,7 @@ def filtered_df():
     df_manufacture = filt_df["Manufacturer"].isin(input.manufacturer())
     df_pack_size = filt_df["Pack_Size"].isin(input.pack_size())
     df_packaging = filt_df["Packaging"].isin(input.packaging())
-    return filt_df[df_city & df_channel & df_manufacture & df_pack_size & df_packaging]
+    return filt_df[df_city & df_channel & df_manufacture & df_pack_size & df_packaging].drop(columns=["Period"])
 
 @reactive.effect
 @reactive.event(input.reset)

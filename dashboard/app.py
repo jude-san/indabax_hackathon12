@@ -239,6 +239,7 @@ ui.include_css(app_dir / "styles.css")
 def filtered_df():
     df["Date"] = pd.to_datetime(df["Period"], errors="coerce")
     df.set_index("Date", inplace=True)
+    df.drop(columns=["Period"], inplace=True)
     start, end = input.date()
     filt_df = df[start:end]
     df_city = filt_df["City"].isin(input.city())

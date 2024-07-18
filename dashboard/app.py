@@ -267,12 +267,12 @@ ui.HTML(
     """
       <script>
         window.embeddedChatbotConfig = {
-        chatbotId: "yXjnDtqNy2BqjtmrVPsc6",
+        chatbotId: "-kIW47h9_yEb8wZj6DlG4",
         domain: "www.chatbase.co"}
       </script>
         <script
         src="https://www.chatbase.co/embed.min.js"
-        chatbotId="yXjnDtqNy2BqjtmrVPsc6"
+        chatbotId="-kIW47h9_yEb8wZj6DlG4"
         domain="www.chatbase.co"
         defer>
         </script>

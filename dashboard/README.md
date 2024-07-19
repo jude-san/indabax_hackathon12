@@ -41,11 +41,6 @@ OR install the packages below using pip. For example, pip install shiny
 - statsmodels
 - openpyxl
 
-## Using VS Code
-
-- Install shiny extension from Extensions
-- Once environment has been created, you can run app from VS Code
-
 ## Run shiny app on the command line
 
 ```bash

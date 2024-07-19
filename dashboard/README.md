@@ -31,7 +31,7 @@ conda install --file requirements.txt
 
 OR install the packages below using pip. For example, pip install shiny
 
-## Packages
+### Packages
 
 - faicons
 - shiny

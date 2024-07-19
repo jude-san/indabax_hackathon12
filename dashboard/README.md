@@ -14,7 +14,7 @@ Follow the link below to install Anaconda.
 **Replace [preferred_name] with the preferred name of your environment**
 
 ```bash
-conda env create -n preferred_name
+conda create -n preferred_name
 ```
 
 ## Activate environment

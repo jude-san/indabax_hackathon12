@@ -25,8 +25,8 @@ conda activate preferred_name
 
 ## Install dependencies
 
-```
-conda install --file requirements.txt
+```bash
+pip install -r requirements.txt
 ```
 
 OR install the packages below using pip. For example, pip install shiny
